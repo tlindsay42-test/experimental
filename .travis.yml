@@ -16,7 +16,7 @@ matrix:
       osx_image: xcode9.1
       install:
         #- brew update > /dev/null
-        - brew install curl --with-openssl
+        #- brew install curl --with-openssl
         - brew tap caskroom/cask
         - brew cask install powershell
   fast_finish: true
