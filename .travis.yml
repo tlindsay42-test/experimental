@@ -21,8 +21,8 @@ matrix:
         - brew cask install powershell
   fast_finish: true
 
-install:
-  - pwsh -c 'Install-Module -Name Armor -Scope CurrentUser -Force -Confirm:$false'
+before_script:
+  - pwsh -c 'Install-Module -Name Armor -Scope CurrentUser -Force -Confirm:$false -Verbose'
 
 script:
   - pwsh -v
