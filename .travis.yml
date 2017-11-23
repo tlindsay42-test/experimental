@@ -19,6 +19,7 @@ matrix:
         - brew install curl --with-openssl
         - brew tap caskroom/cask
         - brew cask install powershell
+  fast_finish: true
 
 install: true
   # - sudo chmod +x ./build/travis/install-dependencies.sh
