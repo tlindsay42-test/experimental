@@ -19,6 +19,16 @@ matrix:
       install:
         - brew tap caskroom/cask
         - brew cask install powershell
+    - os: osx
+      osx_image: xcode8.3
+      install:
+        - brew tap caskroom/cask
+        - brew cask install powershell
+    - os: osx
+      osx_image: xcode7.3
+      install:
+        - brew tap caskroom/cask
+        - brew cask install powershell
   fast_finish: true
 
 #before_script:
