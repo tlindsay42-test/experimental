@@ -12,8 +12,13 @@ matrix:
               key_url: "https://packages.microsoft.com/keys/microsoft.asc"
           packages:
             - powershell
-    #- os: osx
-      #osx_image: xcode9.1
+    - os: osx
+      osx_image: xcode9.1
+      install:
+        - brew update > /dev/null
+        - brew install curl --with-openssl
+        - brew tap caskroom/cask
+        - brew cask install powershell
 
 install: true
   # - sudo chmod +x ./build/travis/install-dependencies.sh
