@@ -15,14 +15,14 @@ matrix:
     - os: osx
       osx_image: xcode9.1
       install:
-        #- brew update > /dev/null
-        #- brew install curl --with-openssl
         - brew tap caskroom/cask
         - brew cask install powershell
   fast_finish: true
 
 before_script:
-  - pwsh -c 'Install-Module -Name Armor -Scope CurrentUser -Force -Confirm:$false -Verbose'
+  #- pwsh -f '${TRAVIS_BUILD_DIR}/tests.ps1'
+  - pwsh -c 'if ( Test-Path -Path "${TRAVIS_BUILD_DIR}" ) { $true } else { throw 'Directory not found "TRAVIS_BUILD_DIR".' }'
 
 script:
-  - pwsh -c 'Import-Module -Name Armor -Verbose'
+  #- pwsh -f '${TRAVIS_BUILD_DIR}/tests.ps1'
+  - pwsh -c 'if ( Test-Path -Path "${TRAVIS_BUILD_DIR}" ) { $true } else { throw 'Directory not found "TRAVIS_BUILD_DIR".' }'
