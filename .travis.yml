@@ -25,6 +25,4 @@ before_script:
   - pwsh -c 'Install-Module -Name Armor -Scope CurrentUser -Force -Confirm:$false -Verbose'
 
 script:
-  - pwsh -v
-  # - pwsh -file ./build/shared/build.ps1
-  # - pwsh -file ./tests/start-tests.ps1
+  - pwsh -c 'Import-Module -Name Armor -Verbose'
