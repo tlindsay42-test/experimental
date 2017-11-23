@@ -19,10 +19,9 @@ matrix:
         - brew cask install powershell
   fast_finish: true
 
-before_script:
-  #- pwsh -f '${TRAVIS_BUILD_DIR}/tests.ps1'
-  - pwsh -c 'if ( Test-Path -Path "${TRAVIS_BUILD_DIR}" ) { $true } else { throw 'Directory not found "TRAVIS_BUILD_DIR".' }'
+#before_script:
+  #- pwsh -f '${env:TRAVIS_BUILD_DIR}/tests.ps1'
 
 script:
-  #- pwsh -f '${TRAVIS_BUILD_DIR}/tests.ps1'
-  - pwsh -c 'if ( Test-Path -Path "${TRAVIS_BUILD_DIR}" ) { $true } else { throw 'Directory not found "TRAVIS_BUILD_DIR".' }'
+  #- pwsh -f '${env:TRAVIS_BUILD_DIR}/tests.ps1'
+  - pwsh -c 'if ( Test-Path -Path "${env:TRAVIS_BUILD_DIR}" ) { $true } else { throw "Directory not found '${env:TRAVIS_BUILD_DIR}'."" }'
