@@ -21,10 +21,8 @@ matrix:
         - brew cask install powershell
   fast_finish: true
 
-install: true
-  # - sudo chmod +x ./build/travis/install-dependencies.sh
-  # - ./build/travis/install-dependencies.sh
-  # - sudo pwsh -file ./build/shared/install-dependencies.ps1
+install:
+  - pwsh -c 'Install-Module -Name Armor -Scope CurrentUser -Force -Confirm:$false'
 
 script:
   - pwsh -v
