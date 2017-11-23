@@ -20,6 +20,7 @@ install: true
   # - ./build/travis/install-dependencies.sh
   # - sudo pwsh -file ./build/shared/install-dependencies.ps1
 
-script: true
+script:
+  - pwsh -v
   # - pwsh -file ./build/shared/build.ps1
   # - pwsh -file ./tests/start-tests.ps1
