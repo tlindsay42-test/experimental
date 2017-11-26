@@ -123,7 +123,7 @@ environment:
 # by default, all script lines are interpreted as batch
 install:
   - ps: Install-Module -Name 'Pester' -Scope 'CurrentUser' -Force -Confirm:$false -Verbose
-  - ps: Write-Host -Object ( 'AppVeyor PR#- "{0}""' -f $env:APPVEYOR_PULL_REQUEST_NUMBER )
+  - ps: Add-AppVeyorMessage -Message ( 'AppVeyor PR#- "{0}""' -f $env:APPVEYOR_PULL_REQUEST_NUMBER ) -Category Information
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
@@ -225,10 +225,9 @@ build: off
 
 # on successful build
 on_success:
-  - ps: Write-Host -Object $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_NAME
-  - ps: if ( $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -eq 'master' ) { Write-Host -Object "`nThis is the master branch!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not the master branch!`n" -ForegroundColor 'Yellow' }
-  - ps: if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null ) { Write-Host -Object "`nThis is not a pull request!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is a pull request!`n" -ForegroundColor 'Yellow' }
-  - ps: if ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -eq $env:EMAIL_ADDRESS ) { Write-Host -Object "`nThis is Troy Lindsay!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not Troy Lindsay!`n" -ForegroundColor 'Yellow' }
+  - ps: if ( $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -eq 'master' ) { Add-AppVeyorMessage -Message "`nThis is the master branch!`n" -Category 'Information' } else { Add-AppVeyorMessage -Message "`nThis is not the master branch!`n" -Category 'Warning' }
+  - ps: if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null ) { Add-AppVeyorMessage -Message "`nThis is not a pull request!`n" -Category 'Information' } else { Add-AppVeyorMessage -Message "`nThis is a pull request!`n" -Category 'Warning' }
+  - ps: if ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -eq $env:EMAIL_ADDRESS ) { Add-AppVeyorMessage -Message "`nThis is Troy Lindsay!`n" -Category 'Information' } else { Add-AppVeyorMessage -Message "`nThis is not Troy Lindsay!`n" -Category 'Warning' }
 
 # on build failure
 #on_failure:
