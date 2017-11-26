@@ -120,7 +120,7 @@ image:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
-  - ps: Install-Module -Name 'Pester' -Scope 'CurrentUser' -Force -Confirm:$false
+  - ps: Install-Module -Name 'Pester' -Scope 'CurrentUser' -Force -Confirm:$false -Verbose
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
