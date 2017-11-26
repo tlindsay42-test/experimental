@@ -224,7 +224,7 @@ build: off
 # on successful build
 on_success:
   - ps: Write-Host -Object 'Hello world!'
-  on:
+  - on:
     branch: master
 
 # on build failure
