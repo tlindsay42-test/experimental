@@ -83,7 +83,9 @@ image:
 #hosts:
 
 # environment variables
-#environment:
+environment:
+  EMAIL_ADDRESS:
+    secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
 
 # this is how to allow failing jobs in the matrix
 #matrix:
@@ -222,7 +224,11 @@ build: off
 #---------------------------------#
 
 # on successful build
-#on_success:
+on_success:
+  - ps: Write-Host -Object $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_NAME
+  - ps: if ( $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -eq 'master' ) { Write-Host -Object "`nThis is the master branch!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not the master branch!`n" -ForegroundColor 'Yellow' }
+  - ps: if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null ) { Write-Host -Object "`nThis is not a pull request!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is a pull request!`n" -ForegroundColor 'Yellow' }
+  - ps: if ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -eq $env:EMAIL_ADDRESS ) { Write-Host -Object "`nThis is Troy Lindsay!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not Troy Lindsay!`n" -ForegroundColor 'Yellow' }
 
 # on build failure
 #on_failure:
