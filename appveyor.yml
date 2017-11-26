@@ -121,6 +121,7 @@ image:
 # by default, all script lines are interpreted as batch
 install:
   - ps: Install-Module -Name 'Pester' -Scope 'CurrentUser' -Force -Confirm:$false -Verbose
+  - ps: Write-Host -Object ( 'AppVeyor PR#- "{0}""' -f $env:APPVEYOR_PULL_REQUEST_NUMBER )
 
 # enable patching of AssemblyInfo.* files
 #assembly_info:
