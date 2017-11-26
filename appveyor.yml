@@ -84,6 +84,8 @@ image:
 
 # environment variables
 environment:
+  CI_NAME: 'AppVeyor'
+  CI_BUILD_NUMBER: {APPVEYOR_BUILD_VERSION}
   EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
 
@@ -122,6 +124,7 @@ environment:
 # scripts that run after cloning repository
 # by default, all script lines are interpreted as batch
 install:
+  - ps: Write-Host -Object $env:CI_BUILD_NUMBER
   - ps: Install-Module -Name 'Pester' -Scope 'CurrentUser' -Force -Confirm:$false -Verbose
   - ps: Add-AppVeyorMessage -Message ( 'AppVeyor PR#- "{0}""' -f $env:APPVEYOR_PULL_REQUEST_NUMBER ) -Category Information
 
