@@ -85,7 +85,7 @@ image:
 # environment variables
 environment:
   CI_NAME: 'AppVeyor'
-  CI_BUILD_NUMBER: {APPVEYOR_BUILD_VERSION}
+  CI_BUILD_NUMBER: $env:APPVEYOR_BUILD_VERSION
   EMAIL_ADDRESS:
     secure: 43DvfWEGMogavR46PXxh30oNdHE9mpp1Y/awYFP7kA4=
 
