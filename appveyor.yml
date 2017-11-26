@@ -225,8 +225,10 @@ build: off
 
 # on successful build
 on_success:
-  - ps: $env:APPVEYOR_PULL_REQUEST_NUMBER.GetType() | Format-List
-  - ps: if ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -is $env:EMAIL_ADDRESS ) { Write-Host -Object "`nThis is Troy Lindsay!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not Troy Lindsay!`n" -ForegroundColor 'Yellow' }
+  - ps: Write-Host -Object $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_NAME
+  - ps: if ( $env:APPVEYOR_PULL_REQUEST_HEAD_REPO_BRANCH -eq 'master' ) { Write-Host -Object "`nThis is the master branch!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not the master branch!`n" -ForegroundColor 'Yellow' }
+  - ps: if ( $env:APPVEYOR_PULL_REQUEST_NUMBER -eq $null ) { Write-Host -Object "`nThis is not a pull request!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is a pull request!`n" -ForegroundColor 'Yellow' }
+  - ps: if ( $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL -eq $env:EMAIL_ADDRESS ) { Write-Host -Object "`nThis is Troy Lindsay!`n" -ForegroundColor 'Yellow' } else { Write-Host -Object "`nThis is not Troy Lindsay!`n" -ForegroundColor 'Yellow' }
 
 # on build failure
 #on_failure:
